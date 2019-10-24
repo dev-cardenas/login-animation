@@ -66,3 +66,206 @@ form .btn-login {
   margin: auto;
   padding: 7px;
 }
+
+/* Aparicion del form */
+
+form {
+  overflow: hidden;
+  animation-name: fade;
+  animation-duration: 1s;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Aparicion del form */
+
+/* form mude */
+
+form .input-block:nth-child(1) {
+  animation: move 0.25s;
+}
+
+form .input-block:nth-child(2) {
+  animation-name: move;
+  animation-duration: 400ms;
+  animation-delay: 100ms;
+  animation-fill-mode: backwards; /* quedate en la posicion inicial */
+}
+
+form .btn-login {
+  animation: move 400ms;
+  animation-delay: 250ms;
+  animation-fill-mode: backwards;
+}
+
+@keyframes move {
+  from {
+    opacity: 0;
+    transform: translateX(-35%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+}
+/* form mude */
+
+/*
+Cuando clica en login, 
+el formulario sale para abajo
+*/
+.form-hide {
+  animation: down 1.2s forwards;
+  /*
+  queda en la posicion final, puede 
+  ponerse arriba o abajo
+  animation-fill-mode: forwards;   
+  */
+  animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+  /* animation-timing-function: steps(5); */
+  /* animation-timing-function: ease-in; */
+}
+
+@keyframes down {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(100vh);
+  }
+}
+
+/* FORM NO-NO */
+
+form.validate-error {
+  animation: nono 300ms linear, fade paused;
+  /* animation-play-state: fade paused; */
+  animation-iteration-count: 2;
+}
+
+@keyframes nono {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  35% {
+    transform: translateX(-15%);
+  }
+  70% {
+    transform: translateX(15%);
+  }
+}
+
+/* desafio 7 squares */
+body {
+  overflow: hidden;
+}
+.squares li {
+  width: 40px;
+  height: 47px;
+  background-color: rgba(255, 255, 255, 0.15);
+  display: block;
+  position: absolute;
+  bottom: -40px;
+  animation: up 2s infinite;
+  /* animation-direction: alternate-reverse; */
+}
+
+@keyframes up {
+  from {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-800px) rotate(960deg);
+  }
+}
+
+/* test */
+
+@keyframes pulse {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  33% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(3);
+    opacity: 0;
+  }
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  background: #c06c84;
+  box-shadow: 0 3px 2px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  border: 0;
+  height: 45px;
+  padding: 0 30px;
+  color: #fff;
+  font-family: Lato, Arial, sans-serif;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+  will-change: transform;
+}
+
+.button:hover {
+  background: darken(#c06c84, 10%);
+  box-shadow: 0 4px 17px rgba(0, 0, 0, 0.2);
+  transform: translate3d(0, -2px, 0);
+}
+
+.button:active {
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+  transform: translate3d(0, 1px, 0);
+}
+
+.pulse {
+  position: relative;
+}
+.pulse:after,
+.pulse:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  opacity: 0;
+  margin: auto;
+}
+
+.pulse:hover:before,
+.pulse:hover:after {
+  display: none;
+}
+
+.pulse:before {
+  animation: pulse 1.5s infinite linear;
+}
+.pulse:after {
+  animation: pulse 2s 0.4s infinite linear;
+}
